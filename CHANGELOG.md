@@ -12,3 +12,9 @@
 
 - Fixed Eloquent models to use the configured table prefix and the same table names created by the package migration.
 - Updated the test setup to run package migrations explicitly against the in-memory testing connection and assert both tables exist.
+
+
+## 1.0.2 - 2026-11-16
+
+- Fixed GitHub Actions dependency matrix by passing `--prefer-lowest` and `--prefer-stable` to `composer update` rather than the install action.
+- Kept PHP 8.3/8.4 and lowest/stable dependency coverage.

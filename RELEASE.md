@@ -65,3 +65,25 @@ After the GitHub release, submit the repository to Packagist: https://packagist.
 This release fixes the mismatch between migration table names and Eloquent model table names. Both models now apply the configured `table_prefix`, matching the tables created by the package migration. The test setup explicitly migrates the `testing` connection and checks that both package tables exist.
 
 Run `composer validate --strict` and `composer test` before publishing.
+
+
+## Patch release v1.0.2
+
+This release fixes the GitHub Actions dependency matrix. Composer's `--prefer-lowest` and `--prefer-stable` flags are now passed to `composer update`, where they are supported, instead of being passed to `composer install`. The workflow resolves dependencies for each PHP/dependency matrix, validates Composer configuration, and runs the PHPUnit suite.
+
+### Release commands
+
+```bash
+git add .
+git commit -m "fix: correct Composer dependency matrix in CI"
+git push origin main
+git tag -a v1.0.2 -m "Release v1.0.2"
+git push origin v1.0.2
+```
+
+### GitHub Release
+
+- Title: `v1.0.2 - Fix Composer dependency matrix in GitHub Actions`
+- Tag: `v1.0.2`
+
+Run the full test suite successfully before publishing the release.

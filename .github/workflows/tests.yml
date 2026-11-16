@@ -1,9 +1,11 @@
 name: Tests
+
 on:
   push:
     branches: [main]
     tags: ['v*']
   pull_request:
+
 jobs:
   tests:
     runs-on: ubuntu-latest
@@ -14,12 +16,20 @@ jobs:
         dependency-version: ['prefer-lowest', 'prefer-stable']
     steps:
       - uses: actions/checkout@v4
+
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: none
-      - uses: ramsey/composer-install@v3
-        with:
-          composer-options: --${{ matrix.dependency-version }}
-      - run: composer validate --strict
-      - run: composer test
+          tools: composer:v2
+
+      # --prefer-lowest and --prefer-stable are Composer UPDATE options,
+      # not INSTALL options. Resolve dependencies explicitly for each matrix.
+      - name: Resolve dependencies
+        run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
+
+      - name: Validate Composer configuration
+        run: composer validate --strict
+
+      - name: Run test suite
+        run: composer test
