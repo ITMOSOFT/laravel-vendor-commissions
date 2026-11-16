@@ -9,6 +9,11 @@ class CommissionRule extends Model
 {
     protected $guarded = [];
 
+    public function getTable(): string
+    {
+        return (string) config('itmosoft-vendor-commissions.table_prefix', 'itmosoft_').'vendor_commission_rules';
+    }
+
     protected function casts(): array
     {
         return [

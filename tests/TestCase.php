@@ -31,6 +31,9 @@ abstract class TestCase extends Orchestra
             $table->string('name');
             $table->timestamps();
         });
-        $this->artisan('migrate')->run();
+        $this->artisan('migrate', ['--database' => 'testing'])->run();
+
+        $this->assertTrue(Schema::hasTable('itmosoft_vendor_commission_rules'));
+        $this->assertTrue(Schema::hasTable('itmosoft_vendor_commissions'));
     }
 }

@@ -16,7 +16,7 @@ php artisan vendor:publish --tag=itmosoft-vendor-commissions-config
 php artisan migrate
 ```
 
-The package creates `itmosoft_vendor_commission_rules` and `itmosoft_vendor_commissions`. Configure `table_prefix` before migrating if you need different table names.
+The package creates `{table_prefix}vendor_commission_rules` and `{table_prefix}vendor_commissions`. The Eloquent models use the same configured prefix, so migrations and queries remain aligned. Configure `table_prefix` before migrating if you need different table names.
 
 ## Create commission rules
 

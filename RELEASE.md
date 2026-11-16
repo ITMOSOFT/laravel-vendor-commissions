@@ -59,3 +59,9 @@ Initial release of ITMOSOFT Laravel Vendor Commissions.
 ```
 
 After the GitHub release, submit the repository to Packagist: https://packagist.org/packages/submit.
+
+## Patch release v1.0.1
+
+This release fixes the mismatch between migration table names and Eloquent model table names. Both models now apply the configured `table_prefix`, matching the tables created by the package migration. The test setup explicitly migrates the `testing` connection and checks that both package tables exist.
+
+Run `composer validate --strict` and `composer test` before publishing.
